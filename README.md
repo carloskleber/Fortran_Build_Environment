@@ -1,7 +1,28 @@
 # Basic CMake Setup for a new Fortran Project
 
+(O texto abaixo é basicamente derivado do projeto original)
+
 The idea is that you can fork this project into your own system, and you immediately have
 a structure and a surrounding CMake environment to compile and test.
+
+# Config
+
+## Windows
+
+* Install MSYS2: https://www.msys2.org/
+* Open MSYS2 MinGW x64,
+* Install the following packages:
+
+        pacman -S mingw64/mingw-w64-x86_64-gcc-fortran
+        pacman -S mingw64/mingw-w64-x86_64-cmake
+
+* Clone the repo
+
+Veja que a pasta do Windows de dentro do MinGW é diferente: C:/... = /c/...
+
+## Linux
+
+...
 
 #### Note:
 
@@ -14,11 +35,13 @@ specifically geared towards the computational infrastructure for these scientist
 
 After you have cloned this repo, go into its main directory and type the following:
 
+    cd /c/Users/usuario/pasta/
     mkdir RELEASE
     cd RELEASE
     cmake ..
-    make -j
-    make install
+    cmake --build .
+
+Usando `cmake --install .` irá copiar o programa compilado para a pasta `bin`.
 
 This should build a tiny library `lib/static/liblib1.a` with a single funtion `is_two(n)`
 which returns `.T.` if and only if the only parameter is indeed 2, and `.F.` otherwise,
